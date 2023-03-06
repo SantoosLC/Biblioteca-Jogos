@@ -143,7 +143,7 @@
                     <div class="modal-body">
                         <div class="text-center">
                             <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" style="border-radius:15px;" src="" width="450rem" height="800rem"></iframe> 
+                                <iframe class="embed-responsive-item" style="border-radius:15px;" src="" width="450rem" height="400rem"></iframe> 
                             </div>
                         </div>
                     </div>
