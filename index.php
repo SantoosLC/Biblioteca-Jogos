@@ -2,8 +2,17 @@
     session_start();
     include_once("assets/conexao/conexao.php");
 
+    if(isset($_GET['turma'])) {
+        $filtro_turma = ($_GET['turma']) ? "WHERE turma='" . $_GET['turma'] . "'" : "";
+    } else {
+        $filtro_turma = "Todos";
+    }
+
+    $turmas_result = mysqli_query($conn, "SELECT DISTINCT turma FROM turmas");
+
     $games = "SELECT * FROM Games";
-    $games_result = mysqli_query($conn, $games);
+
+    $games_result = mysqli_query($conn, "SELECT * FROM games " . $filtro_turma);
 
     $games_votos = "SELECT nome_game, SUM(qntd_votos) AS total_votos FROM games GROUP BY nome_game ORDER BY total_votos DESC";
     $games_result_votos = mysqli_query($conn, $games_votos);
@@ -53,6 +62,30 @@
             <div class="row">
                 <div class="col-md-6 d-flex">
                     <div class="align-self-center p-5">
+
+                    <!-- Filtro por Turma/Ano -->
+
+                    <form method="GET">
+                        <div class="mb-3">
+                            <label for="turma" style="color:white;" class="form-label">Filtrar por Turma:</label>
+                            <select class="form-select" id="turma" name="turma">
+                            <option value="">Todos</option>
+                            <?php
+                                while($turma_row = mysqli_fetch_assoc($turmas_result)){
+                                $selected = ($turma_row['turma'] == $_GET['turma']) ? 'selected' : '';
+                                echo "<option value='" . $turma_row['turma'] . "' " . $selected . ">" . $turma_row['turma'] . "</option>";
+                                }
+                            ?>
+                            </select>
+                            <button type="submit" class="btn btn-purple">Filtrar</button>
+
+                            <div class="borda-separacao-2"></div>
+
+                        </div>
+                    </form>
+
+                    <!-- Filtro por Turma/Ano -->
+
                     <?php
                         while($games_row = mysqli_fetch_assoc($games_result)){
                     ?>
@@ -109,7 +142,9 @@
                     </div>
                     <div class="modal-body">
                         <div class="text-center">
-                            <iframe style="border-radius:15px;" src="" width="450rem" height="800rem"></iframe> 
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" style="border-radius:15px;" src="" width="450rem" height="800rem"></iframe> 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -118,7 +153,7 @@
         <!-- Fim do modal -->
 
         <!-- Footer Lucas Santos -->
-        <footer class="bg-dark text-white py-3">
+        <footer class="footer fixed-bottom mt-auto bg-dark text-white py-3">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 text-center text-lg-start mb-2 mb-lg-0">

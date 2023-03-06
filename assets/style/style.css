@@ -27,6 +27,13 @@ header {
     /* border-bottom: 1px solid #e5e5e5; */
 }
 
+.borda-separacao-2 {
+    width: auto;
+    height: 2.5rem;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid #e5e5e562;
+}
+
 .btn {
     margin-top: 10px;
 }
@@ -62,3 +69,20 @@ header {
     color: white;
     background: linear-gradient(to bottom, #20284d 0%, #0f142b 100%);
   }
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1e2333;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(0deg, #11a8fd, #117eed);
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(0deg, #0d8de8, #0d7ada);
+}
