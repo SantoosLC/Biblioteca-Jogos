@@ -10,8 +10,6 @@
 
     $turmas_result = mysqli_query($conn, "SELECT DISTINCT turma FROM turmas");
 
-    $games = "SELECT * FROM Games";
-
     $games_result = mysqli_query($conn, "SELECT * FROM games " . $filtro_turma);
 
     $games_votos = "SELECT nome_game, SUM(qntd_votos) AS total_votos FROM games GROUP BY nome_game ORDER BY total_votos DESC";
@@ -69,7 +67,7 @@
                         <div class="mb-3">
                             <label for="turma" style="color:white;" class="form-label">Filtrar por Turma:</label>
                             <select class="form-select" id="turma" name="turma">
-                            <option value="">Todos</option>
+                            <option value="">Todas</option>
                             <?php
                                 while($turma_row = mysqli_fetch_assoc($turmas_result)){
                                 $selected = ($turma_row['turma'] == $_GET['turma']) ? 'selected' : '';
@@ -95,7 +93,7 @@
                                 <a data-bs-toggle="modal" data-bs-target="#Games-Modal" data-name="<?php echo $games_row['nome_game']; ?>" data-link="<?php echo $games_row['link_iframe']; ?>" class="btn btn-purple">
                                     Abrir Jogo
                                 </a>
-                                <a style="margin-left:8.5rem;" href="#" id="confirmLink" data-name="<?php echo $games_row['nome_game']; ?>" data-id="<?php echo $games_row['id']; ?>" class="btn btn-purple">
+                                <a style="margin-left:8.5rem;" href="#" id="confirmLink_<?php echo $games_row['id']; ?>" data-name="<?php echo $games_row['nome_game']; ?>" data-id="<?php echo $games_row['id']; ?>" class="btn btn-purple">
                                     Votar
                                 </a>
                             </div>
@@ -229,14 +227,12 @@
         <!-- Fim da mensagem -->
 
         <!-- SweetAlert Confirmação de votação -->
+        
         <script>
-            document.getElementById('confirmLink').addEventListener('click', function(e) {
+        $('a[id^="confirmLink_"]').click(function(e) {
             e.preventDefault();
-            var bot_votar = document.querySelector('#confirmLink');
-            var game_name = bot_votar.getAttribute('data-name');
-            var id = bot_votar.getAttribute('data-id');
-
-            console.log(game_name)
+            var game_name = $(this).data('name');
+            var game_id = $(this).data('id');
 
             Swal.fire({
                 title: 'Tem certeza?',
@@ -248,11 +244,12 @@
                 confirmButtonText: 'Sim, Votar!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = 'votacao.php?id=' + id;
+                    window.location.href = 'votacao.php?id=' + game_id;
                 }
-            })
+            }) 
         });
         </script>
+
         <!-- Fim SweetAlert -->
 
     </body>
