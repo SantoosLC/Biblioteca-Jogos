@@ -49,9 +49,13 @@
     <body>
 
         <!-- Header com uma logo centralizada e imagem de fundo -->
-        <header>
-            <img src="assets/images/icon-512.png" alt="Logo" class="logo">
-        </header>
+        <nav style="border-radius:10px;" class="navbar navbar-light bg-dark p-2">
+            <a class="navbar-brand" style="color:white;">
+                <img src="assets/images/icon-512.png" width="30" height="30" class="d-inline-blockalign-top" alt="">
+                Senai Games
+            </a>
+            <a href="Dashboard/login.php" class="btn btn-purple my-2 my-sm-0">Painel do Professor</a>
+        </nav>
         <!-- Fim da Header -->
 
 
