@@ -4,7 +4,7 @@
 
 $servidor = "localhost"; // Servidor
 $usuario = "root"; // Usuario DB
-$senha = "root"; // Senha DB
+$senha = ""; // Senha DB
 $db = "SenaiGames"; // Nome do Banco de Dados
 
 $conn = mysqli_connect($servidor, $usuario, $senha, $db);

@@ -10,7 +10,7 @@ if (isset($_SESSION['usuario_logado']) && $_SESSION['usuario_logado'] == true) {
     exit();
 }
 
-require_once 'assets/requests/conexao.php';
+require_once '../assets/conexao/conexao.php';
 require_once 'assets/requests/header.php';
 
 $sql = mysqli_query($conn, "SELECT COUNT(*) as total_jogos FROM games");
@@ -22,8 +22,6 @@ $result_votos = mysqli_fetch_assoc($sql_votos);
 $sql_turmas = mysqli_query($conn, "SELECT COUNT(*) as total_turmas FROM turmas");
 $result_turmas = mysqli_fetch_assoc($sql_turmas);
 
-// CHART
-
 $sql_chart = "SELECT MONTH(HoraDeRegistro) AS mes, COUNT(nome_game) AS nome_game FROM games WHERE YEAR(HoraDeRegistro) = '2023' GROUP BY mes";
 $result_chart = mysqli_query($conn, $sql_chart);
 
@@ -34,8 +32,6 @@ while ($row = mysqli_fetch_assoc($result_chart)) {
 
 $json_data = json_encode($data);
 
-
-mysqli_close($conn)
 ?>
 
 <body id="page-top">
@@ -230,8 +226,6 @@ mysqli_close($conn)
             </div>
         </div>
     </div>
-
-
 
     <script src="assets/js/demo/chart-pie-demo.js"></script>
 

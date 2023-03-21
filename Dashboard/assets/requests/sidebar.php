@@ -35,7 +35,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Escolha:</h6>
                 <a class="collapse-item" href="lancar_jogo.php">Lançar novo jogo</a>
-                <a class="collapse-item" href="atualiza_jogo.php">Atualizar jogo existente</a>
+                <a class="collapse-item" href="Jogos_edicao.php">Atualizar jogo existente</a>
             </div>
         </div>
     </li>
@@ -63,7 +63,7 @@
     <div class="sidebar-card d-none d-lg-flex">
         <img class="sidebar-card-illustration mb-2" src="assets/img/undraw_rocket.svg" alt="...">
         <p class="text-center mb-2">Dashboard editado e funções desenvolvidas por <br><strong>Lucas Santos</strong> </p>
-        <a class="btn btn-primary btn-sm" href="https://linkedin.com/">Linkedin</a>
+        <a class="btn btn-primary btn-sm" href="https://www.linkedin.com/in/santosluca/">Linkedin</a>
     </div>
 
 </ul>

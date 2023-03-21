@@ -10,7 +10,7 @@ if (isset($_SESSION['usuario_logado']) && $_SESSION['usuario_logado'] == true) {
     exit();
 }
 
-require_once 'assets/requests/conexao.php';
+require_once '../assets/conexao/conexao.php';
 require_once 'assets/requests/header.php';
 ?>
 
@@ -46,12 +46,24 @@ require_once 'assets/requests/header.php';
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-
+                                    
                                     <?php 
+                                    
+                                     if(isset($_SESSION['arquivo_error'])) {
+                                        echo "<div class='alert alert-danger my-4 p-3 border'><p>".$_SESSION['arquivo_error']."</p></div>";
+                                        unset($_SESSION['arquivo_error']);
+                                    }
+            
+                                    if(isset($_SESSION['arquivo_success'])) {
+                                        echo "<div class='alert alert-success my-4 p-3 border'><p>".$_SESSION['arquivo_success']."</p></div>";
+                                        unset($_SESSION['arquivo_success']);
+                                        echo '<script>setTimeout(function() { window.location.href = "dashboard.php"; }, 3000);</script>';
+                                    }
+                                    
                                     $sql = "SELECT id, turma FROM turmas";
                                     $resultado = mysqli_query($conn, $sql);
                                     ?>
-
+    
                                     <form action="assets/requests/lancar_jogo-db.php" method="POST" enctype="multipart/form-data" >
                                         <div class="form-group">
                                             <label for="nome_jogo">Nome do Jogo</label>
@@ -129,19 +141,20 @@ require_once 'assets/requests/header.php';
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Pronto para Sair?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Clique em "Sair" se estiver pronto para encerrar a sessão atual.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Voltar</button>
+                    <a class="btn btn-primary" href="login.html">Sair</a>
                 </div>
             </div>
         </div>
     </div>
+    
 </body>
 
 </html>

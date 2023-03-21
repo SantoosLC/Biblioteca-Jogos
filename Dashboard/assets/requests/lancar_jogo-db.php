@@ -1,31 +1,41 @@
 <?php
+session_start();
 
-require_once './conexao.php'; 
+if (isset($_SESSION['usuario_logado']) && $_SESSION['usuario_logado'] == true) {
+    echo "";
+} else {
+    header("Location: login.php");
+    exit();
+}
+
+require_once '../../../assets/conexao/conexao.php'; 
 
 if(isset($_POST["Lancar"])) {
 	$target_dir = "../../../Jogos";
-	$target_file = $target_dir . basename($_FILES["arquivo"]["name"]); // Caminho completo do arquivo a ser salvo
+	$target_file = $target_dir . basename($_FILES["arquivo"]["name"]); 
+	
 	$uploadOk = 1;
-	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION)); // Extensão do arquivo
+	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION)); 
+	
 	if($imageFileType != "zip") {
-		echo "Erro: somente arquivos ZIP são permitidos.";
+		$_SESSION['arquivo_error'] = "Somente arquivos ZIP são permitidos.";
 		$uploadOk = 0;
 	}
 	if ($uploadOk == 0) {
-		echo "Erro: o arquivo não foi enviado.";
+		$_SESSION['arquivo_error'] = "O Arquivo não foi enviado.";
 	} else {
 		if (move_uploaded_file($_FILES["arquivo"]["tmp_name"], $target_file)) {
-			echo "O arquivo ". basename( $_FILES["arquivo"]["name"]). " foi enviado com sucesso.";
+
 			$zip = new ZipArchive;
 			if ($zip->open($target_file) === TRUE) {
 			    $zip->extractTo($target_dir);
 			    $zip->close();
-			    echo "O arquivo ZIP foi extraído com sucesso.";
+			    $_SESSION['arquivo_success'] = "Arquivo enviado com sucesso";
 			} else {
-			    echo "Erro ao extrair o arquivo ZIP.";
+			    $_SESSION['arquivo_error'] = "Erro ao extrair arquivo ZIP.";
 			}
 		} else {
-			echo "Erro ao enviar o arquivo.";
+			$_SESSION['arquivo_error'] = "Erro ao enviar o arquivo, tente novamente.";
 		}
 	}
 
@@ -37,7 +47,7 @@ if(isset($_POST["Lancar"])) {
     if (isset($_POST['check'])) {
         $jogo_visivel = "Sim";
     } else {
-        $jogo_visivel = "Não";
+        $jogo_visivel = "N達o";
     }
 
 	$data = date("Y-m-d H:i:s");
@@ -45,6 +55,6 @@ if(isset($_POST["Lancar"])) {
     $lancar_jogo = "INSERT games(nome_game, img_game, turma, link_iframe ,visivel, HoraDeRegistro) VALUES ('$nome', '$img_game', '$turma', 'Jogos/$link_iframe', '$jogo_visivel', '$data')";
     $jogo = mysqli_query($conn, $lancar_jogo);
 
-    header("Location: ../../dashboard.php");
+    header("Location: ../../lancar_jogo.php");
 }
 ?>
