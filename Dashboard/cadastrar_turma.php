@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$paginaAtiva = 'Lancar_Jogo';
+$paginaAtiva = 'Jogos_Registrados';
 
 if (isset($_SESSION['usuario_logado']) && $_SESSION['usuario_logado'] == true) {
     echo "";
@@ -12,6 +12,8 @@ if (isset($_SESSION['usuario_logado']) && $_SESSION['usuario_logado'] == true) {
 
 require_once '../assets/conexao/conexao.php';
 require_once 'assets/requests/header.php';
+
+
 ?>
 
 <body id="page-top">
@@ -33,7 +35,7 @@ require_once 'assets/requests/header.php';
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Lançar novo Jogo</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Cadastrar Turma</h1>
                     </div>
 
                     <div class="row">
@@ -42,7 +44,7 @@ require_once 'assets/requests/header.php';
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-secundary">Dados do Jogo</h6>
+                                    <h6 class="m-0 font-weight-bold text-secundary">Dados da Turma</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -57,14 +59,14 @@ require_once 'assets/requests/header.php';
                                     if(isset($_SESSION['arquivo_success'])) {
                                         echo "<div class='alert alert-success my-4 p-3 border'><p>".$_SESSION['arquivo_success']."</p></div>";
                                         unset($_SESSION['arquivo_success']);
-                                        echo '<script>setTimeout(function() { window.location.href = "dashboard.php"; }, 3000);</script>';
+                                        echo '<script>setTimeout(function() { window.location.href = "dashboard.php"; }, 2000);</script>';
                                     }
                                     ?>
     
-                                    <form action="assets/requests/lancar_jogo-db.php" method="POST" enctype="multipart/form-data" >
+                                    <form action="assets/requests/cadastro_turma-db.php" method="POST" enctype="multipart/form-data" >
                                         <div class="form-group">
-                                            <label for="nome_jogo">Nome do Jogo</label>
-                                            <input type="text" class="form-control" id="nome_jogo" name="nome" placeholder="Nome do jogo">
+                                            <label for="nome_jogo">Nome da Turma</label>
+                                            <input type="text" class="form-control" name="turma" placeholder="Nome da Turma" required>
                                         </div>
 
                                         <div class="form-group">
@@ -73,43 +75,13 @@ require_once 'assets/requests/header.php';
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="exampleInputPassword1">Turma</label>
-                                            <?php 
-                                            echo "<select class='form-control' name='opcao'>";
-                                            echo '<option value="" disabled selected>Selecione uma opção</option>';
-                                                while ($opcao = mysqli_fetch_assoc($sql_j_turmas)) {
-                                                echo "<option value='" . $opcao['turma'] . "'>" . $opcao['turma'] . "</option>";
-                                                }    
-                                            echo "</select>";
-
-                                            ?>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="img_jogo">Descrição</label>
-                                            <input type="text" class="form-control" id="descricao" name="Descricao" placeholder="Descrição" maxlength="150">
-                                            <small class="form-text text-muted text-right"><span id="caracteres">150</span> Caracteres Restantes</small>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="link_jogo">Link para executar</label>
-                                            <input type="text" class="form-control" id="link_jogo" name="link" placeholder="Link do Jogo">
-                                            <small class="form-text text-muted">Considere o link a partir da pasta raiz do jogo Ex: Dinossauro(Pasta)/index.html</small>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="arquivo_jogo">Arquivo do Jogo</label>
-                                            <input type="file" class="form-control-file" id="arquivo_jogo" name="arquivo" placeholder="Imagem">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="img_jogo">Imagem do Jogo</label>
-                                            <input type="file" class="form-control-file" id="imagem" name="imagem" placeholder="Imagem">
+                                            <label for="img_jogo">Ano</label>
+                                            <input type="text" class="form-control ano" name="ano" placeholder="Ano" readonly>
                                         </div>
 
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="Visivel_Check" name="check">
-                                            <label class="form-check-label" for="Visivel_Check">Deixar o jogo visivel</label>
+                                            <input type="checkbox" class="form-check-input" id="Visivel_Check" name="check" required>
+                                            <label class="form-check-label" for="Visivel_Check">Confirmo os dados inseridos acima</label>
                                         </div>
                                         <br>
                                         <button type="submit" name="Lancar" class="btn btn-primary">Lançar</button>
@@ -162,27 +134,17 @@ require_once 'assets/requests/header.php';
             </div>
         </div>
     </div>
-
-
+    
     <script type="text/javascript">
 
-    var input = document.getElementById("descricao");
-    var contador = document.getElementById("caracteres");
-    var limite = input.getAttribute("maxlength");
-
-    input.addEventListener("input", function() {
-    var caracteresDigitados = input.value.length;
-    var caracteresRestantes = limite - caracteresDigitados;
-    
-    contador.innerHTML = caracteresRestantes;
-    });
-
     var professor = "<?php echo $_SESSION['nome']; ?>"; 
+    var ano = "<?php echo date('Y'); ?>";
 
     $('.professor').val(professor);
+    $('.ano').val(ano);
 
-    </script>
-    
+	</script>
+
 </body>
 
 </html>

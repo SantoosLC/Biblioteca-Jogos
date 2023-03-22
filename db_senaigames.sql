@@ -24,14 +24,15 @@ CREATE TABLE IF NOT EXISTS `games` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome_game` varchar(50) DEFAULT NULL,
   `qntd_votos` varchar(50) DEFAULT '0',
-  `img_game` varchar(256) DEFAULT NULL,
+  `img_game` varchar(256) DEFAULT 'https://www.senaiac.org.br/images/2019/12/16/senai--web.jpg',
   `turma` varchar(50) DEFAULT NULL,
+  `descricao` varchar(256) DEFAULT NULL,
   `link_iframe` varchar(256) DEFAULT NULL,
   `professor` varchar(50) DEFAULT NULL,
   `visivel` enum('Sim','Não') DEFAULT 'Não',
   `HoraDeRegistro` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Exportação de dados foi desmarcado.
 
@@ -42,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `turmas` (
   `ano` varchar(50) DEFAULT NULL,
   `Professor` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Exportação de dados foi desmarcado.
 
@@ -55,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `web_login` (
   `email` varchar(50) DEFAULT NULL,
   `Funcao` varchar(50) DEFAULT NULL,
   `permissao` int(11) NOT NULL DEFAULT 0,
-  `foto` varchar(2225) DEFAULT NULL,
+  `foto` varchar(2225) DEFAULT 'https://media.glassdoor.com/sqll/2485344/senai-sc-squarelogo-1649915441240.png',
   `status` enum('pendente','aprovado') NOT NULL DEFAULT 'pendente',
   `token` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE

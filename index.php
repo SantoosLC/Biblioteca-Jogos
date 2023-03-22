@@ -94,7 +94,7 @@
                         <h4 style="color:white;"> <?php echo $games_row['nome_game']; ?></h4>
                         <img class="img_game" src="<?php echo $games_row['img_game']; ?>">
                             <div class="descricao">
-                                <a data-bs-toggle="modal" data-bs-target="#Games-Modal" data-name="<?php echo $games_row['nome_game']; ?>" data-link="<?php echo $games_row['link_iframe']; ?>" class="btn btn-purple">
+                                <a data-bs-toggle="modal" data-bs-target="#Games-Modal" data-professor="<?php echo $games_row['professor']; ?>" data-turma="<?php echo $games_row['turma'];?>" data-descricao="<?php echo $games_row['descricao']; ?>" data-name="<?php echo $games_row['nome_game']; ?>" data-link="<?php echo $games_row['link_iframe']; ?>" class="btn btn-purple">
                                     Abrir Jogo
                                 </a>
                                 <a style="margin-left:8.5rem;" href="#" id="confirmLink_<?php echo $games_row['id']; ?>" data-name="<?php echo $games_row['nome_game']; ?>" data-id="<?php echo $games_row['id']; ?>" class="btn btn-purple">
@@ -149,6 +149,22 @@
                             </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="arquivo_jogo">Professor</label>
+                                <input type="text" class="professor form-control" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="arquivo_jogo">Turma</label>
+                                <input type="text" class="turma form-control" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="detalhes-jogo">Descrição do Jogo:</label>
+                                <textarea class="form-control descricao" rows="3" maxlength="150" disabled></textarea>
+                            </div>    
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -190,10 +206,16 @@
                 var button = $(event.relatedTarget)
                 var game_link = button.data('link')
                 var game_name = button.data('name')
+                var game_professor = button.data('professor')
+                var game_turma = button.data('turma')
+                var game_descricao = button.data('descricao')
 
                 var modal = $(this)
                 modal.find('iframe').attr('src', game_link) 
                 modal.find('.modal-title').text("Jogo do " + game_name)
+                modal.find('.professor').val(game_professor)
+                modal.find('.turma').val(game_turma)
+                modal.find('.descricao').val(game_descricao)
             })
 
             $('#Games-Modal').on('hide.bs.modal', function (event) {

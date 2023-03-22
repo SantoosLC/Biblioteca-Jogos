@@ -39,20 +39,39 @@ if(isset($_POST["Lancar"])) {
 		}
 	}
 
-    $nome = $_POST['nome'];
-    $img_game = $_POST['imagem'];
+	// Enviar arquivo da imagem
+
+	$imagem_nome = $_FILES["imagem"]["name"];
+	$imagem_temp = $_FILES["imagem"]["tmp_name"];
+	$nome = $_POST["nome"];
+
+	$extensao = pathinfo($imagem_nome, PATHINFO_EXTENSION);
+	$novo_nome = $nome . "." . $extensao;
+
+	$diretorio_destino = "../../../imagens-jogos/" . $novo_nome;
+	
+	if(!is_dir("../../../imagens-jogos")) {
+		mkdir("../../../imagens-jogos");
+	}
+	
+	move_uploaded_file($imagem_temp, $diretorio_destino);
+
+	// SQL
+
+    $img_game = 'https://localhost/biblioteca-jogos/imagens-jogos/'. $novo_nome;
     $turma = $_POST['opcao'];
     $link_iframe = $_POST['link'];
-
+	$professor = $_SESSION['nome'];
+	
     if (isset($_POST['check'])) {
         $jogo_visivel = "Sim";
     } else {
-        $jogo_visivel = "N達o";
+        $jogo_visivel = "Não";
     }
 
 	$data = date("Y-m-d H:i:s");
 
-    $lancar_jogo = "INSERT games(nome_game, img_game, turma, link_iframe ,visivel, HoraDeRegistro) VALUES ('$nome', '$img_game', '$turma', 'Jogos/$link_iframe', '$jogo_visivel', '$data')";
+    $lancar_jogo = "INSERT games(nome_game, img_game, turma, link_iframe , professor, visivel, HoraDeRegistro) VALUES ('$nome', '$img_game', '$turma', 'Jogos/$link_iframe', '$professor', '$jogo_visivel', '$data')";
     $jogo = mysqli_query($conn, $lancar_jogo);
 
     header("Location: ../../lancar_jogo.php");

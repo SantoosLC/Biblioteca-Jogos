@@ -52,6 +52,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Escolha:</h6>
                 <a class="collapse-item" href="jogos_registrados.php">Jogos Registrados</a>
+                <a class="collapse-item" href="cadastrar_turma.php">Cadastrar Turma</a>
             </div>
         </div>
     </li>
