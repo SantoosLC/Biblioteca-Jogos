@@ -13,25 +13,6 @@ if (isset($_SESSION['usuario_logado']) && $_SESSION['usuario_logado'] == true) {
 require_once '../assets/conexao/conexao.php';
 require_once 'assets/requests/header.php';
 
-$sql = mysqli_query($conn, "SELECT COUNT(*) as total_jogos FROM games");
-$result = mysqli_fetch_assoc($sql);
-
-$sql_votos = mysqli_query($conn,"SELECT SUM(qntd_votos) AS total_votos FROM games");
-$result_votos = mysqli_fetch_assoc($sql_votos);
-
-$sql_turmas = mysqli_query($conn, "SELECT COUNT(*) as total_turmas FROM turmas");
-$result_turmas = mysqli_fetch_assoc($sql_turmas);
-
-$sql_chart = "SELECT MONTH(HoraDeRegistro) AS mes, COUNT(nome_game) AS nome_game FROM games WHERE YEAR(HoraDeRegistro) = '2023' GROUP BY mes";
-$result_chart = mysqli_query($conn, $sql_chart);
-
-$data = array();
-while ($row = mysqli_fetch_assoc($result_chart)) {
-    $data[] = $row['nome_game'];
-}
-
-$json_data = json_encode($data);
-
 ?>
 
 <body id="page-top">
@@ -158,8 +139,7 @@ $json_data = json_encode($data);
                         <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Jogos por Turma</h6>
                                 </div>
                                 <!-- Card Body -->
@@ -168,15 +148,11 @@ $json_data = json_encode($data);
                                         <canvas id="myPieChart"></canvas>
                                     </div>
                                     <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> 1° DS
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> 2° DS
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> 3° DS
-                                        </span>
+                                        <?php foreach ($turmas as $i => $turma): ?>
+                                            <span class="mr-2">
+                                                <i class="fas fa-circle text-<?php echo $i % 3 == 0 ? 'primary' : ($i % 3 == 1 ? 'success' : 'info'); ?>"></i> <?php echo $turma; ?>
+                                            </span>
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
                             </div>
@@ -227,10 +203,47 @@ $json_data = json_encode($data);
         </div>
     </div>
 
-    <script src="assets/js/demo/chart-pie-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js" integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8=" crossorigin="anonymous"></script>
     
+    <script>
+        const config = {
+        type: 'pie',
+        data: {
+            labels: <?php echo json_encode($turmas); ?>,
+            datasets: [{
+                data: <?php echo json_encode($jogos); ?>,
+                backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+                hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                hoverBorderColor: 'rgba(234, 236, 244, 1)',
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            tooltips: {
+                backgroundColor: 'rgb(255,255,255)',
+                bodyFontColor: '#858796',
+                borderColor: '#dddfeb',
+                borderWidth: 1,
+                xPadding: 15,
+                yPadding: 15,
+                displayColors: false,
+                caretPadding: 10,
+            },
+            legend: {
+                display: true,
+                position: 'bottom'
+            },
+            cutoutPercentage: 80,
+        },
+    };
+
+    const ctx = document.getElementById('myPieChart').getContext('2d');
+    const myPieChart = new Chart(ctx, config);
+
+    </script>
+
     <script>
         var data = <?php echo $json_data; ?>;
         var optionsProfileVisit = {

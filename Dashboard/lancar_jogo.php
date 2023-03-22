@@ -59,9 +59,6 @@ require_once 'assets/requests/header.php';
                                         unset($_SESSION['arquivo_success']);
                                         echo '<script>setTimeout(function() { window.location.href = "dashboard.php"; }, 3000);</script>';
                                     }
-                                    
-                                    $sql = "SELECT id, turma FROM turmas";
-                                    $resultado = mysqli_query($conn, $sql);
                                     ?>
     
                                     <form action="assets/requests/lancar_jogo-db.php" method="POST" enctype="multipart/form-data" >
@@ -75,7 +72,7 @@ require_once 'assets/requests/header.php';
                                             <?php 
                                             echo "<select class='form-control' name='opcao'>";
                                             echo '<option value="" disabled selected>Selecione uma opção</option>';
-                                                while ($opcao = mysqli_fetch_assoc($resultado)) {
+                                                while ($opcao = mysqli_fetch_assoc($sql_j_turmas)) {
                                                 echo "<option value='" . $opcao['turma'] . "'>" . $opcao['turma'] . "</option>";
                                                 }    
                                             echo "</select>";

@@ -65,9 +65,7 @@ $paginaAtiva = 'Lancar_Jogo'
                                         </tr>
                                     </tfoot>
                                     <?php            
-                                        $sql = "SELECT * FROM games";
-                                        $jogos_sql = mysqli_query($conn,$sql);
-                                        while($planilha_jogos = mysqli_fetch_assoc($jogos_sql)){
+                                        while($planilha_jogos = mysqli_fetch_assoc($sql_j_games)){
 
                                         $id = $planilha_jogos['id'];
                                         $nome = $planilha_jogos['nome_game'];
@@ -164,11 +162,6 @@ $paginaAtiva = 'Lancar_Jogo'
                     </button>
 			    </div>
 			    <div class="modal-body">
-                    <?php        
-                        $sql = "SELECT id, turma FROM turmas";
-                        $resultado = mysqli_query($conn, $sql);
-                    ?>
-
                     <form method="POST" action="assets/requests/lancar_edicao-db.php">
 
                         <div class="form-group">
@@ -182,7 +175,7 @@ $paginaAtiva = 'Lancar_Jogo'
                             <?php 
                                 echo "<select class='form-control turma' name='opcao'>";
                                 echo '<option value="" disabled selected>Selecione uma opção</option>';
-                                    while ($opcao = mysqli_fetch_assoc($resultado)) {
+                                    while ($opcao = mysqli_fetch_assoc($sql_j_turmas)) {
                                     echo "<option value='" . $opcao['turma'] . "'>" . $opcao['turma'] . "</option>";
                                     }    
                                 echo "</select>";

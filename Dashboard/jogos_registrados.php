@@ -64,9 +64,7 @@ $paginaAtiva = 'Jogos_Registrados'
                                         </tr>
                                     </tfoot>
                                     <?php            
-                                        $sql = "SELECT * FROM games";
-                                        $jogos_sql = mysqli_query($conn,$sql);
-                                        while($planilha_jogos = mysqli_fetch_assoc($jogos_sql)){
+                                        while($planilha_jogos = mysqli_fetch_assoc($sql_j_games)){
 
                                         $nome = $planilha_jogos['nome_game'];
                                         $votos = $planilha_jogos['qntd_votos'];
