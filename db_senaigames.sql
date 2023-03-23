@@ -29,10 +29,22 @@ CREATE TABLE IF NOT EXISTS `games` (
   `descricao` varchar(256) DEFAULT NULL,
   `link_iframe` varchar(256) DEFAULT NULL,
   `professor` varchar(50) DEFAULT NULL,
+  `alunos` mediumtext DEFAULT NULL,
   `visivel` enum('Sim','Não') DEFAULT 'Não',
   `HoraDeRegistro` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela senaigames.logs
+CREATE TABLE IF NOT EXISTS `logs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(256) DEFAULT NULL,
+  `usuario` varchar(256) DEFAULT NULL,
+  `data` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Exportação de dados foi desmarcado.
 

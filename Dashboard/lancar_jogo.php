@@ -38,7 +38,7 @@ require_once 'assets/requests/header.php';
 
                     <div class="row">
                         <!-- Area Chart -->
-                        <div class="col-xl-6 col-lg-6">
+                        <div class="col-xl-6">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -62,57 +62,92 @@ require_once 'assets/requests/header.php';
                                     ?>
     
                                     <form action="assets/requests/lancar_jogo-db.php" method="POST" enctype="multipart/form-data" >
-                                        <div class="form-group">
-                                            <label for="nome_jogo">Nome do Jogo</label>
-                                            <input type="text" class="form-control" id="nome_jogo" name="nome" placeholder="Nome do jogo">
-                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="nome_jogo">Nome do Jogo</label>
+                                                    <input type="text" class="form-control" id="nome_jogo" name="nome" placeholder="Nome do jogo">
+                                                </div>
+                                            </div>
 
-                                        <div class="form-group">
-                                            <label for="img_jogo">Professor</label>
-                                            <input type="text" class="form-control professor" name="professor" placeholder="Professor" readonly>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Turma</label>
-                                            <?php 
-                                            echo "<select class='form-control' name='opcao'>";
-                                            echo '<option value="" disabled selected>Selecione uma opção</option>';
-                                                while ($opcao = mysqli_fetch_assoc($sql_j_turmas)) {
-                                                echo "<option value='" . $opcao['turma'] . "'>" . $opcao['turma'] . "</option>";
-                                                }    
-                                            echo "</select>";
-
-                                            ?>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="img_jogo">Descrição</label>
-                                            <input type="text" class="form-control" id="descricao" name="Descricao" placeholder="Descrição" maxlength="150">
-                                            <small class="form-text text-muted text-right"><span id="caracteres">150</span> Caracteres Restantes</small>
-                                        </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="img_jogo">Professor</label>
+                                                    <input type="text" class="form-control professor" name="professor" placeholder="Professor" readonly>
+                                                </div>
+                                            </div>
                                         
-                                        <div class="form-group">
-                                            <label for="link_jogo">Link para executar</label>
-                                            <input type="text" class="form-control" id="link_jogo" name="link" placeholder="Link do Jogo">
-                                            <small class="form-text text-muted">Considere o link a partir da pasta raiz do jogo Ex: Dinossauro(Pasta)/index.html</small>
-                                        </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword1">Turma</label>
+                                                    <?php 
+                                                    echo "<select class='form-control' name='opcao'>";
+                                                    echo '<option value="" disabled selected>Selecione uma opção</option>';
+                                                        while ($opcao = mysqli_fetch_assoc($sql_j_turmas)) {
+                                                        echo "<option value='" . $opcao['turma'] . "'>" . $opcao['turma'] . "</option>";
+                                                        }    
+                                                    echo "</select>";
 
-                                        <div class="form-group">
-                                            <label for="arquivo_jogo">Arquivo do Jogo</label>
-                                            <input type="file" class="form-control-file" id="arquivo_jogo" name="arquivo" placeholder="Imagem">
-                                        </div>
+                                                    ?>
+                                                </div>
+                                            </div>
 
-                                        <div class="form-group">
-                                            <label for="img_jogo">Imagem do Jogo</label>
-                                            <input type="file" class="form-control-file" id="imagem" name="imagem" placeholder="Imagem">
-                                        </div>
+                                            <div class="col-md-6" style="margin-top:2rem;">
+                                                <div class="form-group">
+                                                    <div class="borda-evandro p-3">
+                                                    <div class="escrita-borda">Descrição</div>
+                                                        <textarea type="text" class="form-control textarea" id="descricao" name="descricao" placeholder="Escreva aqui" rows="1" maxlength="250"></textarea>
+                                                    </div>
+                                                <small class="form-text text-muted text-right"><span id="caracteres">250</span> Caracteres Restantes</small>
+                                                </div>
+                                            </div>
 
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="Visivel_Check" name="check">
-                                            <label class="form-check-label" for="Visivel_Check">Deixar o jogo visivel</label>
+                                            <div class="col-md-6" style="margin-top:2rem;">
+                                                <div class="form-group">
+                                                        <div class="borda-evandro p-3">
+                                                        <div class="escrita-borda">Alunos</div>
+                                                            <div id="alunos-input">
+                                                                <input type="text" class="form-control textarea" name="alunos[]" placeholder="Insira o nome do aluno">
+                                                            </div>
+                                                        </div>
+                                                    <button type="button" class="btn btn-primary" style="border-radius:55px; width:100%; margin-top:5px;" onclick="botaoMais()">Adicionar aluno  <i class="bi bi-plus-circle"></i></button>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="link_jogo">Link para executar</label>
+                                                    <input type="text" class="form-control" id="link_jogo" name="link" placeholder="Link do Jogo">
+                                                    <small class="form-text text-muted">Considere o link a partir da pasta raiz do jogo Ex: Dinossauro(Pasta)/index.html</small>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="arquivo_jogo">Arquivo do Jogo</label>
+                                                    <input type="file" class="form-control-file" id="arquivo_jogo" name="arquivo" placeholder="Imagem">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="img_jogo">Imagem do Jogo</label>
+                                                    <input type="file" class="form-control-file" id="imagem" name="imagem" placeholder="Imagem">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="Visivel_Check" name="check">
+                                                    <label class="form-check-label" for="Visivel_Check">Deixar o jogo visivel</label>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <div class="col-md-12">
+                                                <button type="submit" name="Lancar" class="btn btn-primary">Lançar Jogo</button>
+                                            </div>
                                         </div>
-                                        <br>
-                                        <button type="submit" name="Lancar" class="btn btn-primary">Lançar</button>
                                     </form>
                                 </div>
                             </div>
@@ -163,6 +198,26 @@ require_once 'assets/requests/header.php';
         </div>
     </div>
 
+    <script>
+		function botaoMais() {
+			var div = document.getElementById("alunos-input");
+			var aluno_input = document.createElement("input");
+			aluno_input.type = "text";
+            aluno_input.name = "alunos[]";
+            aluno_input.classList.add("form-control");
+            aluno_input.classList.add("textarea");
+            aluno_input.style.marginTop = "10px";
+            aluno_input.placeholder = "Insira o nome do aluno";
+			div.appendChild(aluno_input);
+		}
+
+        var descricao = document.getElementById("descricao");
+
+        descricao.addEventListener("input", function() {
+            this.style.height = "auto";
+            this.style.height = (this.scrollHeight) + "px";
+        });
+	</script>
 
     <script type="text/javascript">
 

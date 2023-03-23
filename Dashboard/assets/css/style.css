@@ -11654,3 +11654,27 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
     width: 100%
 }
+
+.borda-evandro {
+    border: 2px solid #d1d3e2;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    position: relative;
+}
+
+.escrita-borda {
+    position: absolute;
+    top: -15px;
+    left: 10px;
+    background-color: white;
+    padding: 0 5px;
+}
+
+.textarea {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    resize: none;
+}

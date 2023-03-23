@@ -61,18 +61,20 @@ if(isset($_POST["Lancar"])) {
     $img_game = 'https://localhost/biblioteca-jogos/imagens-jogos/'. $novo_nome;
     $turma = $_POST['opcao'];
     $link_iframe = $_POST['link'];
+	$descricao = $_POST['descricao'];
 	$professor = $_SESSION['nome'];
-	
+	$data = date("Y-m-d H:i:s");
+
+	$aluno = $_POST['alunos'];
+	$alunos = implode(";", $aluno);
+
     if (isset($_POST['check'])) {
         $jogo_visivel = "Sim";
     } else {
         $jogo_visivel = "Não";
     }
 
-	$data = date("Y-m-d H:i:s");
-
-    $lancar_jogo = "INSERT games(nome_game, img_game, turma, link_iframe , professor, visivel, HoraDeRegistro) VALUES ('$nome', '$img_game', '$turma', 'Jogos/$link_iframe', '$professor', '$jogo_visivel', '$data')";
-    $jogo = mysqli_query($conn, $lancar_jogo);
+	$lancar_jogo =  mysqli_query($conn, "INSERT games(nome_game, img_game, turma, descricao, link_iframe, professor, alunos, visivel, HoraDeRegistro) VALUES ('$nome', '$img_game', '$turma', '$descricao', 'Jogos/$link_iframe', '$professor', '$alunos', '$jogo_visivel', '$data')");
 
     header("Location: ../../lancar_jogo.php");
 }

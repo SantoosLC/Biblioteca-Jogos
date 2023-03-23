@@ -59,7 +59,7 @@ require_once 'assets/requests/header.php';
                                     if(isset($_SESSION['arquivo_success'])) {
                                         echo "<div class='alert alert-success my-4 p-3 border'><p>".$_SESSION['arquivo_success']."</p></div>";
                                         unset($_SESSION['arquivo_success']);
-                                        echo '<script>setTimeout(function() { window.location.href = "dashboard.php"; }, 2000);</script>';
+                                        echo '<script>setTimeout(function() { window.location.href = "cadastrar_turma.php"; }, 1000);</script>';
                                     }
                                     ?>
     

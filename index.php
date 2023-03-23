@@ -94,7 +94,7 @@
                         <h4 style="color:white;"> <?php echo $games_row['nome_game']; ?></h4>
                         <img class="img_game" src="<?php echo $games_row['img_game']; ?>">
                             <div class="descricao">
-                                <a data-bs-toggle="modal" data-bs-target="#Games-Modal" data-professor="<?php echo $games_row['professor']; ?>" data-turma="<?php echo $games_row['turma'];?>" data-descricao="<?php echo $games_row['descricao']; ?>" data-name="<?php echo $games_row['nome_game']; ?>" data-link="<?php echo $games_row['link_iframe']; ?>" class="btn btn-purple">
+                                <a data-bs-toggle="modal" data-bs-target="#Games-Modal" data-alunos="<?php echo $games_row['alunos']; ?>" data-professor="<?php echo $games_row['professor']; ?>" data-turma="<?php echo $games_row['turma'];?>" data-descricao="<?php echo $games_row['descricao']; ?>" data-name="<?php echo $games_row['nome_game']; ?>" data-link="<?php echo $games_row['link_iframe']; ?>" class="btn btn-purple">
                                     Abrir Jogo
                                 </a>
                                 <a style="margin-left:8.5rem;" href="#" id="confirmLink_<?php echo $games_row['id']; ?>" data-name="<?php echo $games_row['nome_game']; ?>" data-id="<?php echo $games_row['id']; ?>" class="btn btn-purple">
@@ -135,34 +135,49 @@
         <!-- Fim do Sistema de Votacao -->
 
         <!-- Modal -->
-        <div class="modal fade" id="Games-Modal" tabindex="-1" aria-labelledby="Games-ModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Jogo do Senai</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="text-center">
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" style="border-radius:15px;" src="" width="450rem" height="400rem"></iframe> 
+        <div class="d-flex align-items-center justify-content-center">
+            <div class="modal fade" id="Games-Modal" tabindex="-1" aria-labelledby="Games-ModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Jogo do Senai</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="modal-content">
+                                    <div class="col-md-24">
+                                        <div class="text-center">
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                <iframe class="embed-responsive-item" style="border-radius:15px;" src="" width="450rem" height="400rem"></iframe> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-24">
+                                        <div class="form-group">
+                                            <label for="arquivo_jogo">Professor</label>
+                                            <input type="text" class="professor form-control" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="arquivo_jogo">Turma</label>
+                                            <input type="text" class="turma form-control" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="alunos-jogo">Alunos:</label>
+                                            <textarea class="form-control alunos" rows="3" maxlength="150" disabled></textarea>
+                                        </div>    
+                                        <div class="form-group">
+                                            <label for="detalhes-jogo">Descrição do Jogo:</label>
+                                            <textarea class="form-control descricao" rows="3" maxlength="150" disabled></textarea>
+                                        </div>   
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="arquivo_jogo">Professor</label>
-                                <input type="text" class="professor form-control" disabled>
+                        <div class="modal-footer">
+                            <div class="col-md-12">
+                                
                             </div>
-                            <div class="form-group">
-                                <label for="arquivo_jogo">Turma</label>
-                                <input type="text" class="turma form-control" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="detalhes-jogo">Descrição do Jogo:</label>
-                                <textarea class="form-control descricao" rows="3" maxlength="150" disabled></textarea>
-                            </div>    
                         </div>
                     </div>
                 </div>
@@ -209,20 +224,23 @@
                 var game_professor = button.data('professor')
                 var game_turma = button.data('turma')
                 var game_descricao = button.data('descricao')
+                var game_alunos = button.data('alunos')
 
                 var modal = $(this)
                 modal.find('iframe').attr('src', game_link) 
-                modal.find('.modal-title').text("Jogo do " + game_name)
+                modal.find('.modal-title').text(game_name)
                 modal.find('.professor').val(game_professor)
                 modal.find('.turma').val(game_turma)
                 modal.find('.descricao').val(game_descricao)
+                modal.find('.alunos').val(game_alunos)
             })
 
             $('#Games-Modal').on('hide.bs.modal', function (event) {
                 $('.container').removeClass('efeito-blur');
                 $('header').removeClass('efeito-blur');
-                $('iframe').attr('src', '');
+                $('iframe').attr('src'  , '');
             })
+
         </script>    
         <!-- Fim do Modal do Jogo  -->
 
