@@ -83,7 +83,7 @@ $paginaAtiva = 'Lancar_Jogo'
                                         <td> <?php echo $professor; ?> </td>
                                         <td> <?php echo $jogo_visivel; ?> </td>
                                         <td> 
-                                            <button type="button" style='width:50px;' class="btn btn-xs btn-primary" data-toggle="modal" data-target="#JogosModal" 
+                                            <a type="button" style='width:50px;' class="btn btn-xs btn-success" data-toggle="modal" data-target="#JogosModal" 
                                             
                                             data-id="<?php echo $id; ?>" 
                                             data-nome="<?php echo $nome; ?>" 
@@ -93,7 +93,9 @@ $paginaAtiva = 'Lancar_Jogo'
                                             data-link="<?php echo $link; ?>" 
                                             data-imagem="<?php echo $imagem; ?>" 
 
-                                            ><i class="fa fa-pen" aria-hidden="true"></i></button>
+                                            ><i class="bi bi-pencil-square" aria-hidden="true"></i></a>
+
+                                            <a type="button" style='width:50px;' id="excluirGame_<?php echo $games_row['id']; ?>" data-nome="<?php echo $nome; ?>" data-id="<?php echo $id; ?>" class="btn btn-xs btn-danger"><i class="bi bi-x-circle" aria-hidden="true"></i> </a>
                                         </td>
                                     </tbody>
                                     <?php }?>
@@ -215,6 +217,59 @@ $paginaAtiva = 'Lancar_Jogo'
 			</div>
 		</div>
     </div>
+
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <!-- Script - Excluir Game -->
+
+    <script>
+        $('a[id^="excluirGame_"]').click(function(e) {
+            console.log('teste');
+            e.preventDefault();
+            var game_name = $(this).data('nome');
+            var game_id = $(this).data('id');
+
+            Swal.fire({
+                title: 'Tem certeza?',
+                text: 'Você deseja excluir o jogo ' + game_name + '?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, Excluir!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'assets/requests/excluir_jogo-db.php?id=' + game_id;
+                }
+            }) 
+        });
+    </script>
+
+    <script>
+        if ("<?php echo isset($_SESSION['msg']) ? $_SESSION['msg'] : ''; ?>" != "") {
+
+            var msg = "<?php echo $_SESSION['msg']; ?>";
+
+            if (msg == "Jogo excluido com sucesso.") {
+                Swal.fire({
+                    icon: 'success',
+                    title: msg,
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: msg,
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            }
+            <?php unset($_SESSION['msg']); ?>
+        }
+    </script>
 
     <!-- Script Modal - Editar Jogos -->
 
