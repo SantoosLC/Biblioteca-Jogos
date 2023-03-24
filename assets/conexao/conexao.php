@@ -57,4 +57,8 @@ $conn = mysqli_connect($servidor, $usuario, $senha, $db);
 
     $sql_j_games = mysqli_query($conn, "SELECT * FROM games");
 
+    // controle_usuarios.php
+
+    $sql_c_usuarios = mysqli_query($conn, "SELECT * FROM web_login");
+
 ?>

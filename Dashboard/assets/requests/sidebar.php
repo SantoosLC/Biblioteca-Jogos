@@ -58,6 +58,30 @@
     </li>
 
     <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Area do Administrador
+    </div>
+
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li <?php if ($paginaAtiva == 'Controle') { echo ' class="nav-item active"'; } ?> class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdm"
+            aria-expanded="true" aria-controls="collapseAdm">
+            <i class="bi bi-house-exclamation-fill"></i>
+            <span>Controles</span>
+        </a>
+        <div id="collapseAdm" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Escolha:</h6>
+                <a class="collapse-item" href="controle_usuarios.php">Controle de Usuarios</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
     <!-- Sidebar Message -->
