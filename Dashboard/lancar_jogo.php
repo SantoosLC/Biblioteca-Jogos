@@ -117,7 +117,7 @@ require_once 'assets/requests/header.php';
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="link_jogo">Link para executar</label>
-                                                    <input type="text" class="form-control" id="link_jogo" name="link" placeholder="Link do Jogo">
+                                                    <input type="text" class="form-control" id="link_jogo" name="link" placeholder="Link do Jogo" readonly>
                                                     <small class="form-text text-muted">Considere o link a partir da pasta raiz do jogo Ex: Dinossauro(Pasta)/index.html</small>
                                                 </div>
                                             </div>
@@ -211,6 +211,14 @@ require_once 'assets/requests/header.php';
 			div.appendChild(aluno_input);
 		}
 
+        var arquivo_jogo = document.getElementById('arquivo_jogo');
+
+        arquivo_jogo.addEventListener('change', (event) => {
+            var arquivo_nome = event.target.files[0].name;
+            var arquivo_nome = arquivo_nome.split('.')[0]
+            $('#link_jogo').val(arquivo_nome + "/index.html");
+        });
+
         var descricao = document.getElementById("descricao");
 
         descricao.addEventListener("input", function() {
@@ -222,20 +230,18 @@ require_once 'assets/requests/header.php';
     <script type="text/javascript">
 
     var input = document.getElementById("descricao");
-    var contador = document.getElementById("caracteres");
     var limite = input.getAttribute("maxlength");
 
     input.addEventListener("input", function() {
     var caracteresDigitados = input.value.length;
     var caracteresRestantes = limite - caracteresDigitados;
     
-    contador.innerHTML = caracteresRestantes;
+    $('#caracteres').text(caracteresRestantes);
     });
 
     var professor = "<?php echo $_SESSION['nome']; ?>"; 
 
     $('.professor').val(professor);
-
     </script>
     
 </body>

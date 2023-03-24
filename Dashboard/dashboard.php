@@ -50,7 +50,16 @@ require_once 'assets/requests/header.php';
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Jogos Registrados</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <?php echo $result["total_jogos"]; ?> Jogos</div>
+                                                <?php
+                                                $quantidade = $result["total_jogos"];
+
+                                                if($quantidade >= 2) {
+                                                    $jogo = $quantidade . " Jogos";
+                                                } else {
+                                                    $jogo = $quantidade . " Jogo";
+                                                }
+                                                ?>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <?php echo $jogo ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i style="font-size:2rem;" class="bi bi-joystick"></i>
@@ -68,7 +77,16 @@ require_once 'assets/requests/header.php';
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Total de Votos</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $result_votos["total_votos"]?> Votos</div>
+                                                <?php
+                                                $quantidade = $result_votos["total_votos"];
+
+                                                if($quantidade >= 2) {
+                                                    $voto = $quantidade . " Votos";
+                                                } else {
+                                                    $voto = $quantidade . " Voto";
+                                                }
+                                                ?>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $voto; ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i style="font-size:2rem;" class="bi bi-star"></i>
@@ -85,8 +103,17 @@ require_once 'assets/requests/header.php';
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Quantidade de Alunos</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                Quantidade de Professores</div>
+                                                <?php
+                                                $quantidade = $result_professores["total_professores"];
+
+                                                if($quantidade >= 2) {
+                                                    $professor = $quantidade . " Professores";
+                                                } else {
+                                                    $professor = $quantidade . " Professor";
+                                                }
+                                                ?>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $professor?> </div>
                                         </div>
                                         <div class="col-auto">
                                             <i style="font-size:2rem;" class="bi bi-exclamation-diamond"></i>
@@ -103,7 +130,16 @@ require_once 'assets/requests/header.php';
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Turmas Registradas</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $result_turmas["total_turmas"];?> Turmas</div>
+                                                <?php
+                                                $quantidade = $result_turmas["total_turmas"];
+
+                                                if($quantidade >= 2) {
+                                                    $turma = $quantidade . " Turmas";
+                                                } else {
+                                                    $turma = $quantidade . " Turma";
+                                                }
+                                                ?>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $turma;?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i style="font-size:2rem;" class="bi bi-bar-chart-steps"></i>
@@ -208,7 +244,7 @@ require_once 'assets/requests/header.php';
     <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js" integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8=" crossorigin="anonymous"></script>
     
     <script>
-        const config = {
+        var config = {
         type: 'pie',
         data: {
             labels: <?php echo json_encode($turmas); ?>,
@@ -239,14 +275,14 @@ require_once 'assets/requests/header.php';
         },
     };
 
-    const ctx = document.getElementById('myPieChart').getContext('2d');
-    const myPieChart = new Chart(ctx, config);
+    var ctx = document.getElementById('myPieChart').getContext('2d');
+    var myPieChart = new Chart(ctx, config);
 
     </script>
 
     <script>
         var data = <?php echo $json_data; ?>;
-        var optionsProfileVisit = {
+        var table = {
             annotations: {
                 position: 'back'
             },
@@ -271,7 +307,7 @@ require_once 'assets/requests/header.php';
                 categories: ["Mar","Abr","Mai","Jun","Jul", "Ago","Set","Out","Nov","Dez"],
             },
         };
-        var chart = new ApexCharts(document.querySelector("#myChart"), optionsProfileVisit);
+        var chart = new ApexCharts(document.querySelector("#myChart"), table);
         chart.render();
     </script>
 

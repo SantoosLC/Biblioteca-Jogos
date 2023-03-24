@@ -3,7 +3,7 @@
 
 $servidor = "localhost"; // Servidor
 $usuario = "root"; // Usuario DB
-$senha = ""; // Senha DB
+$senha = "root"; // Senha DB
 $db = "SenaiGames"; // Nome do Banco de Dados
 
 $conn = mysqli_connect($servidor, $usuario, $senha, $db);
@@ -21,6 +21,9 @@ $conn = mysqli_connect($servidor, $usuario, $senha, $db);
 
     $sql_turmas = mysqli_query($conn, "SELECT COUNT(*) as total_turmas FROM turmas");
     $result_turmas = mysqli_fetch_assoc($sql_turmas);
+
+    $sql_profesores = mysqli_query($conn, "SELECT COUNT(*) as total_professores FROM web_login");
+    $result_professores = mysqli_fetch_assoc($sql_profesores);
 
     $sql_chart = mysqli_query($conn, "SELECT MONTH(HoraDeRegistro) AS mes, COUNT(nome_game) AS nome_game FROM games WHERE YEAR(HoraDeRegistro) = '2023' GROUP BY mes");
 
