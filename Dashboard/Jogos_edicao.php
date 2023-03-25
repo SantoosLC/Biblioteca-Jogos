@@ -146,7 +146,7 @@ $paginaAtiva = 'Lancar_Jogo'
                 <div class="modal-body">Clique em "Sair" se estiver pronto para encerrar a sessão atual.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Voltar</button>
-                    <a class="btn btn-primary" href="login.html">Sair</a>
+                    <a class="btn btn-primary" href="login.php">Sair</a>
                 </div>
             </div>
         </div>

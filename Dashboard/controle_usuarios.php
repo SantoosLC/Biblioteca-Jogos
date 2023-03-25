@@ -34,7 +34,7 @@ $paginaAtiva = 'Controle'
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Controle de Usuario - Dashboard</h1>
-                        <a href="" class="btn btn-primary"> Adicionar Usuario</a>
+                        <a data-toggle="modal" data-target="#CriarUsuario"  class="btn btn-primary"> Adicionar Usuario</a>
                         <br>
                         <br>
 
@@ -151,13 +151,82 @@ $paginaAtiva = 'Controle'
                 <div class="modal-body">Clique em "Sair" se estiver pronto para encerrar a sessão atual.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Voltar</button>
-                    <a class="btn btn-primary" href="login.html">Sair</a>
+                    <a class="btn btn-primary" href="login.php">Sair</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal - Edição de Jogos -->
+    <!-- Modal - Criar Usuario -->
+
+    <div class="modal fade" id="CriarUsuario" tabindex="-1" role="dialog" aria-labelledby="CriarUsuarioLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			    <div class="modal-header">
+                    <h5 class="modal-title" id="CriarUsuarioLabel">Criar Usuario</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+			    </div>
+			    <div class="modal-body">
+                    <form method="POST" action="assets/requests/enviar_usuario-db.php">
+
+                        <div class="form-group">
+                            <label for="Nome" class="control-label">Nome:</label>
+                            <input name="nome" type="text" class="form-control nome" id="Nome" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="login" class="control-label">Login:</label>
+                            <input name="login" type="text" class="form-control login" id="login" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="senha" class="control-label">Senha Temporaria:</label>
+                            <input name="senha" type="text" class="form-control senha" id="senha" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="control-label">Email:</label>
+                            <input name="email" type="text" class="form-control email" id="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Funcao" class="control-label">Função</label>
+                            <select name="funcao" id="funcao" class="form-control funcao" required>
+                                <option value="" disabled selected>Selecione uma opção</option>
+                                <option value="Desenvolvedor">Desenvolvedor</option>
+                                <option value="Professor">Professor</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="permissao" class="control-label">Permissao</label>
+                            <select name="permissao" id="permissao" class="form-control permissao" required>
+                                <option value="" disabled selected>Selecione uma opção</option>
+                                <option value="Administrador">Administrador</option>
+                                <option value="Padrao">Padrão</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Status" class="control-label">Status</label>
+                            <select name="status" id="status" class="form-control status" required>
+                                <option value="" disabled selected>Selecione uma opção</option>                                
+                                <option value="Aprovado">Aprovado</option>
+                                <option value="Pendente">Pendente</option>
+                            </select>
+                        </div>
+                        
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Cadastrar</button>
+                    </form>
+			    </div>
+			</div>
+		</div>
+    </div>
+
+    <!-- Modal - Editar Usuario -->
 
     <div class="modal fade" id="ModalUsuario" tabindex="-1" role="dialog" aria-labelledby="ModalUsuarioLabel">
 		<div class="modal-dialog" role="document">
