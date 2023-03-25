@@ -57,6 +57,12 @@
         </div>
     </li>
 
+    <?php 
+
+    if ($adm == 'Administrador') {
+    
+    ?>
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -81,6 +87,8 @@
         </div>
     </li>
 
+    <?php } ?>
+    
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

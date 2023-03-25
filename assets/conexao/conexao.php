@@ -61,4 +61,10 @@ $conn = mysqli_connect($servidor, $usuario, $senha, $db);
 
     $sql_c_usuarios = mysqli_query($conn, "SELECT * FROM web_login");
 
+    // Controle Permissao
+
+    $sql_permissao = mysqli_query($conn, "SELECT login,permissao FROM web_login");
+    $sql_adm = mysqli_fetch_assoc($sql_permissao);
+    $adm = $sql_adm['permissao'];
+
 ?>

@@ -11,7 +11,14 @@ if (isset($_SESSION['usuario_logado']) && $_SESSION['usuario_logado'] == true) {
 require_once '../assets/conexao/conexao.php';
 require_once 'assets/requests/header.php';
 
-$paginaAtiva = 'Controle'
+$paginaAtiva = 'Controle';
+
+if ($adm == 'Administrador') {
+    echo "";
+} else {
+    header("Location: dashboard.php");
+}
+
 ?>
 
 <body id="page-top">
