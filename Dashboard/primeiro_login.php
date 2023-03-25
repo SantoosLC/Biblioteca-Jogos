@@ -20,15 +20,9 @@ require_once 'assets/requests/header.php';
 
                                     <?php 
                                     
-                                    if(isset($_SESSION['login_error'])) {
-                                        echo "<div class='alert alert-danger my-4 p-3 border'><p>".$_SESSION['login_error']."</p></div>";
-                                        unset($_SESSION['login_error']);
-                                    }
-            
-                                    if(isset($_SESSION['login_success'])) {
-                                        echo "<div class='alert alert-success my-4 p-3 border'><p>".$_SESSION['login_success']."</p></div>";
-                                        unset($_SESSION['login_success']);
-                                        echo '<script>setTimeout(function() { window.location.href = "dashboard.php"; }, 3000);</script>';
+                                    if(isset($_SESSION['error_senha'])) {
+                                        echo "<div class='alert alert-danger my-4 p-3 border'><p>".$_SESSION['error_senha']."</p></div>";
+                                        unset($_SESSION['error_senha']);
                                     }
 
                                     ?>
@@ -41,7 +35,7 @@ require_once 'assets/requests/header.php';
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                name="corfirmar-senha" placeholder="Confirmar Senha" required>
+                                                name="confirmar-senha" placeholder="Confirmar Senha" required>
                                         </div>
 
                                         <button type="submit" href="index.html" class="btn btn-primary btn-user btn-block">
