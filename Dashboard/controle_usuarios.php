@@ -327,6 +327,13 @@ $paginaAtiva = 'Controle'
                     showConfirmButton: false,
                     timer: 3000
                 });
+            } else if (msg == "Usuario cadastrado com sucesso.") {
+                Swal.fire({
+                    icon: 'success',
+                    title: msg,
+                    showConfirmButton: false,
+                    timer: 3000
+                });
             } else if (msg == "Usuario modificado com sucesso.") {
                 Swal.fire({
                     icon: 'success',

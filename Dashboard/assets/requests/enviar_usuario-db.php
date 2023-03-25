@@ -23,11 +23,11 @@ $usuario_sql = "INSERT web_login(nome, login, senha, email, funcao, permissao, s
 $usuario_existe = mysqli_query($conn, "SELECT * FROM web_login WHERE login = '$login'");
 
 if(mysqli_num_rows($usuario_existe) > 0) {
-    $_SESSION['arquivo_error'] = 'Esse usuario já esta cadastrado.';
+    $_SESSION['msg'] = 'Esse usuario já esta cadastrado.';
     header("Location: ../../controle_usuarios.php");
   } else {
     $lancar_usuario = mysqli_query($conn, $usuario_sql);
-    $_SESSION['arquivo_success'] = 'Usuario cadastrado com sucesso.';
+    $_SESSION['msg'] = 'Usuario cadastrado com sucesso.';
     header("Location: ../../controle_usuarios.php");
   }
 
