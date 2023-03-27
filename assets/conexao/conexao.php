@@ -73,9 +73,12 @@ $conn = mysqli_connect($servidor, $usuario, $senha, $db);
     }
 
     // iniciacao.php 
+
     $img_carrosel_sql = mysqli_query($conn, "SELECT * FROM imagens");
 
     $textos_iniciacao_sql = mysqli_query($conn, "SELECT * FROM textos");
+
+    
     
     
 ?>

@@ -106,6 +106,54 @@ if ($adm == 'Administrador') {
                         </div>
                     </div>
 
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Modificação de Imagens</h1>
+                    <a data-toggle="modal" data-target="#CriarImagem"  class="btn btn-primary"> Adicionar Imagens </a>
+                    <br>
+                    <br>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-secundary">Modificação de Layout</h6>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Imagem</th>
+                                            <th>Adicionado Por</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Imagem</th>
+                                            <th>Adicionado Por</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </tfoot>
+                                    <?php            
+                                        while($img_carrosel = mysqli_fetch_assoc($img_carrosel_sql)){
+
+                                        $id = $img_carrosel['id'];
+                                        $imagem = $img_carrosel['imagem'];
+                                        $adicionado_por = $img_carrosel['Adicionado_por'];
+                                    ?>
+                                    <tbody>
+                                        <td> <?php echo $imagem; ?> </td>
+                                        <td> <?php echo $adicionado_por; ?> </td>
+                                        <td> 
+                                            <a type="button" style='width:50px;' id="deleteImagem_<?php echo $id; ?>" data-id="<?php echo $id; ?>" data-imagem="<?php echo $imagem; ?>" class="btn btn-xs btn-danger"><i class="bi bi-x-circle" aria-hidden="true"></i> </a>
+                                        </td>
+                                    </tbody>
+                                    <?php }?>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -156,47 +204,25 @@ if ($adm == 'Administrador') {
 
     <!-- Modal - Criar Usuario -->
 
-    <div class="modal fade" id="AlterarLayout" tabindex="-1" role="dialog" aria-labelledby="AlterarLayoutLabel">
+    <div class="modal fade" id="CriarImagem" tabindex="-1" role="dialog" aria-labelledby="ModalImagemLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 			    <div class="modal-header">
-                    <h5 class="modal-title" id="AlterarLayoutLabel">Modificação de Layout</h5>
+                    <h5 class="modal-title" id="ModalImagemLabel">Modificação de Layout</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
 			    </div>
 			    <div class="modal-body">
-                    <form method="POST" action="assets/requests/alterar_layout-db.php">
+                    <form method="POST" action="assets/requests/lancar_imagem-db.php">
 
                         <div class="form-group">
-                            <label for="titulo" class="control-label">Titulo:</label>
-                            <input name="titulo" type="text" class="form-control titulo" id="titulo" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="sobre" class="control-label">Sobre:</label>
-                            <input name="sobre" type="text" class="form-control sobre" id="sobre" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="titulo_carrosel" class="control-label">Titulo Carrosel:</label>
-                            <input name="titulo_carrosel" type="text" class="form-control titulo_carrosel" id="titulo_carrosel" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="sobre_carrosel" class="control-label">Sobre Carrosel:</label>
-                            <input name="sobre_carrosel" type="text" class="form-control sobre_carrosel" id="sobre_carrosel" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="usuario" class="control-label">Usuario Atual:</label>
-                            <input name="usuario" type="text" class="form-control usuario" id="usuario" readonly>
+                            <label for="imagem" class="control-label">Link da Imagem:</label>
+                            <input name="imagem" type="text" class="form-control imagem" id="imagem" required>
                         </div>
                         
-                        <input name="id" type="hidden" class="form-control id" id="id">
-
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success">Alterar</button>
+                        <button type="submit" class="btn btn-success">Confirmar</button>
                     </form>
 			    </div>
 			</div>
@@ -210,15 +236,13 @@ if ($adm == 'Administrador') {
     <!-- Script - Excluir Game -->
 
     <script>
-        $('a[id^="controleUsuario_"]').click(function(e) {
-            console.log('teste');
+        $('a[id^="deleteImagem_"]').click(function(e) {
             e.preventDefault();
-            var user_name = $(this).data('nome');
-            var id_user = $(this).data('id');
+            var id = $(this).data('id');
 
             Swal.fire({
                 title: 'Tem certeza?',
-                text: 'Você deseja excluir o usuario ' + user_name + '?',
+                text: 'Você deseja excluir esta imagem?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -226,7 +250,7 @@ if ($adm == 'Administrador') {
                 confirmButtonText: 'Sim, Excluir!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = 'assets/requests/excluir_usuario-db.php?id=' + id_user;
+                    window.location.href = 'assets/requests/excluir_imagem-db.php?id=' + id;
                 }
             }) 
         });
@@ -255,30 +279,6 @@ if ($adm == 'Administrador') {
             <?php unset($_SESSION['msg']); ?>
         }
     </script>
-
-    <!-- Script Modal - Editar Jogos -->
-
-    <script type="text/javascript">
-		$('#AlterarLayout').on('show.bs.modal', function (event) {
-		  var button = $(event.relatedTarget) 
-		  var id = button.data('id') 
-		  var titulo = button.data('titulo') 
-		  var sobre = button.data('sobre') 
-		  var titulo_carrosel = button.data('titulo-carrosel') 
-		  var sobre_carrosel = button.data('sobre-carrosel') 
-		  var usuario = button.data('usuario') 
-
-		  var modal = $(this)
-
-		  modal.find('#id').val(id)
-		  modal.find('.titulo').val(titulo)
-		  modal.find('.sobre').val(sobre)
-		  modal.find('.titulo_carrosel').val(titulo_carrosel)
-		  modal.find('.sobre_carrosel').val(sobre_carrosel)
-		  modal.find('.usuario').val(usuario)
-		  
-		})
-	</script>
 
     <!-- Inicializar Datatable -->
 
