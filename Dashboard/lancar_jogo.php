@@ -116,9 +116,7 @@ require_once 'assets/requests/header.php';
                                             
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label for="link_jogo">Link para executar</label>
-                                                    <input type="text" class="form-control" id="link_jogo" name="link" placeholder="Link do Jogo" readonly>
-                                                    <small class="form-text text-muted">Considere o link a partir da pasta raiz do jogo Ex: Dinossauro(Pasta)/index.html</small>
+                                                    <input type="hidden" class="form-control" id="link_jogo" name="link" placeholder="Link do Jogo" readonly>
                                                 </div>
                                             </div>
 
