@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Servidor:                     127.0.0.1
--- Versão do servidor:           10.4.27-MariaDB - mariadb.org binary distribution
+-- Versão do servidor:           8.0.31 - MySQL Community Server - GPL
 -- OS do Servidor:               Win64
 -- HeidiSQL Versão:              12.4.0.6659
 -- --------------------------------------------------------
@@ -16,12 +16,12 @@
 
 
 -- Copiando estrutura do banco de dados para impressa_senaigames
-CREATE DATABASE IF NOT EXISTS `impressa_senaigames` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+CREATE DATABASE IF NOT EXISTS `impressa_senaigames` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `impressa_senaigames`;
 
 -- Copiando estrutura para tabela impressa_senaigames.games
 CREATE TABLE IF NOT EXISTS `games` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome_game` varchar(50) DEFAULT NULL,
   `qntd_votos` varchar(50) DEFAULT '0',
   `img_game` varchar(256) DEFAULT 'https://www.senaiac.org.br/images/2019/12/16/senai--web.jpg',
@@ -29,39 +29,61 @@ CREATE TABLE IF NOT EXISTS `games` (
   `descricao` varchar(256) DEFAULT NULL,
   `link_iframe` varchar(256) DEFAULT NULL,
   `professor` varchar(50) DEFAULT NULL,
-  `alunos` mediumtext DEFAULT NULL,
+  `alunos` mediumtext,
   `visivel` enum('Sim','Não') DEFAULT 'Não',
   `HoraDeRegistro` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela impressa_senaigames.imagens
+CREATE TABLE IF NOT EXISTS `imagens` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `imagem` varchar(144) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Exportação de dados foi desmarcado.
 
 -- Copiando estrutura para tabela impressa_senaigames.logs
 CREATE TABLE IF NOT EXISTS `logs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `descricao` varchar(256) DEFAULT NULL,
-  `usuario` varchar(256) DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(256) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `usuario` varchar(256) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `data` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Exportação de dados foi desmarcado.
 
+-- Copiando estrutura para tabela impressa_senaigames.textos
+CREATE TABLE IF NOT EXISTS `textos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'Titulo',
+  `sobre` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'Sobre',
+  `titulo_carrosel` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'Titulo Carrosel',
+  `sobre_carrosel` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'Sobre Carrosel',
+  `Modifcado_Por` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'Sem Modificações',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Exportação de dados foi desmarcado.
+
 -- Copiando estrutura para tabela impressa_senaigames.turmas
 CREATE TABLE IF NOT EXISTS `turmas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `turma` varchar(50) NOT NULL DEFAULT '0',
   `ano` varchar(50) DEFAULT NULL,
   `Professor` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 
 -- Exportação de dados foi desmarcado.
 
 -- Copiando estrutura para tabela impressa_senaigames.web_login
 CREATE TABLE IF NOT EXISTS `web_login` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `login` varchar(30) NOT NULL,
   `senha` varchar(30) NOT NULL,
   `nome` varchar(50) DEFAULT NULL,
@@ -70,10 +92,10 @@ CREATE TABLE IF NOT EXISTS `web_login` (
   `foto` varchar(2225) DEFAULT 'https://media.glassdoor.com/sqll/2485344/senai-sc-squarelogo-1649915441240.png',
   `status` enum('Pendente','Aprovado') NOT NULL DEFAULT 'Pendente',
   `permissao` enum('Administrador','Padrao') NOT NULL DEFAULT 'Padrao',
-  `primeiro_login` int(11) NOT NULL DEFAULT 0,
+  `primeiro_login` int NOT NULL DEFAULT '0',
   `token` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 
 -- Exportação de dados foi desmarcado.
 
