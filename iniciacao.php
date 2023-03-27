@@ -34,35 +34,40 @@
         }
     </style>
 </head>
-    <body>
+    <body style="padding-top:5rem;">
 
         <!-- Header com uma logo e botao de login -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="index.php">
-                <img src="assets/images/image.png" alt="Logo" height="50">
-                </a>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                    <a class="nav-link" href="index.php">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                    <span class="navbar-text mx-2">.</span>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link active" href="iniciacao.php">Iniciação Profissional</a>
-                    </li>
-                    <li class="nav-item">
-                    <span class="navbar-text mx-2">.</span>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="Dashboard/login.php">Painel do Professor</a>
-                    </li>
-                </ul>
+        <header class="fixed-top">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container">
+                    <a class="navbar-brand" href="index.php">
+                    <img src="assets/images/image.png" alt="Logo" height="50">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                        <a class="nav-link" href="index.php">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                        <span class="navbar-text mx-2">.</span>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link active" href="iniciacao.php">Iniciação Profissional</a>
+                        </li>
+                        <li class="nav-item">
+                        <span class="navbar-text mx-2">.</span>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="Dashboard/login.php">Painel do Professor</a>
+                        </li>
+                    </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </header>
         <!-- Fim da Header -->
 
         <section class="caixa">
