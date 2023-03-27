@@ -3,7 +3,7 @@
 
 $servidor = "localhost"; // Servidor
 $usuario = "root"; // Usuario DB
-$senha = ""; // Senha DB
+$senha = "root"; // Senha DB
 $db = "impressa_senaigames"; // Nome do Banco de Dados
 
 $conn = mysqli_connect($servidor, $usuario, $senha, $db);
@@ -57,6 +57,7 @@ $conn = mysqli_connect($servidor, $usuario, $senha, $db);
 
     $sql_j_games = mysqli_query($conn, "SELECT * FROM games");
 
+    
     // controle_usuarios.php
 
     $sql_c_usuarios = mysqli_query($conn, "SELECT * FROM web_login");
@@ -64,7 +65,17 @@ $conn = mysqli_connect($servidor, $usuario, $senha, $db);
     // Controle Permissao
 
     $sql_permissao = mysqli_query($conn, "SELECT login,permissao FROM web_login");
-    $sql_adm = mysqli_fetch_assoc($sql_permissao);
-    $adm = $sql_adm['permissao'];
+    if(mysqli_num_rows($sql_permissao) > 0 ) {
+      $sql_adm = mysqli_fetch_assoc($sql_permissao);
+      $adm = $sql_adm['permissao'];
+    } else {
+      $adm = "Padrão";
+    }
 
+    // iniciacao.php 
+    $img_carrosel_sql = mysqli_query($conn, "SELECT * FROM imagens");
+
+    $textos_iniciacao_sql = mysqli_query($conn, "SELECT * FROM textos");
+    
+    
 ?>

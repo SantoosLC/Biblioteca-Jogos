@@ -50,14 +50,14 @@ header {
 
 .btn-purple {
     color: #fff;
-    background: radial-gradient(902px at 10% 20%, rgb(18, 50, 90) 0%, rgb(207, 199, 252) 100.2%);
-    border-color: rgb(18, 50, 90);
+    background: radial-gradient(902px at 10% 20%, #23D9D9, #5DC5C5, #18BABA 100.2%);
+    border-color: #5DC5C5;
 }
 
 .btn-purple:hover {
     color: #fff;
-    background: radial-gradient(902px at 10% 50%, rgb(18, 50, 90) 0%, rgb(207, 199, 252) 50.2%);
-    border-color: rgb(18, 50, 90);
+    background: radial-gradient(902px at 10% 50%, #20adad, #3ec2c2, #18BABA 50.2%);
+    border-color: #5DC5C5;
 }
 
 .table {
@@ -67,8 +67,43 @@ header {
     margin: 0;
     padding: 0;
     color: white;
-    background: linear-gradient(to bottom, #20284d 0%, #0f142b 100%);
+    background: linear-gradient(to bottom, #23D9D9 0%, #18BABA 100%);
   }
+
+.custom-btn {
+    color: #fff;
+    border-color: #23D9D9;
+  }
+  
+.custom-btn:hover {
+    background-image: none;
+    background: linear-gradient(45deg, #23D9D9, #5DC5C5, #18BABA);
+    color: #fff;
+    border-color: #23D9D9;
+}
+
+.caixa {
+	padding: 60px 0;
+	border-bottom: 1px solid #ffffffab;
+}
+
+.borda-redonda-top {
+    border-radius: 15px 15px 0 0;
+}
+
+.borda-redonda-bottom {
+    border-radius: 0 0 15px 15px;
+}
+
+.carousel-section {
+    padding: 21px 0px 85px 0px;
+    height: auto;
+    width: 100vh;
+}
+
+.carousel-item-img {
+    border-radius: 15px !important;
+}
 
 ::-webkit-scrollbar {
     width: 12px;

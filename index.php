@@ -41,20 +41,41 @@
 
         body {
             background-image: url('assets/images/corel-vector.jpg');
+            background-repeat: no-repeat;
             background-size: cover;
-            background-repeat: repeat;
+            background-position: center;
         }
     </style>
 </head>
     <body>
 
         <!-- Header com uma logo e botao de login -->
-        <nav style="border-radius:10px;" class="navbar navbar-light bg-dark p-2">
-            <a class="navbar-brand" style="color:white;">
-                <img src="assets/images/icon-512.png" width="30" height="30" class="d-inline-blockalign-top" alt="">
-                Senai Games
-            </a>            
-            <a href="Dashboard/login.php" class="btn btn-purple my-2 my-sm-0">Painel do Professor</a>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.php">
+                <img src="assets/images/image.png" alt="Logo" height="50">
+                </a>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                    <span class="navbar-text mx-2">.</span>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="iniciacao.php">Iniciação Profissional</a>
+                    </li>
+                    <li class="nav-item">
+                    <span class="navbar-text mx-2">.</span>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="dashboard/login.php">Painel do Professor</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
         </nav>
         <!-- Fim da Header -->
 
@@ -186,17 +207,16 @@
         <!-- Fim do modal -->
 
         <!-- Footer Lucas Santos -->
-        <footer class="footer fixed-bottom mt-auto bg-dark text-white py-3">
+        <footer class="footer fixed-bottom mt-auto bg-dark text-white py-2 borda-redonda-top">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 text-center text-lg-start mb-2 mb-lg-0">
-                    <p class="mb-0">© Lucas Santos 2023</p>
-                </div>
-                <div class="col-lg-6 text-center text-lg-end">
-                    <a href="https://www.linkedin.com/in/santosluca" target="_blank" class="text-decoration-none text-white">
-                    <i class="fab fa-linkedin fa-lg me-2"></i>
-                    LinkedIn
-                    </a>
+                <div class="col-12 text-center">
+                    <p class="mb-0">Desenvolvedor Web: Lucas Santos - <a href="https://www.linkedin.com/in/santosluca" target="_blank" class="text-decoration-none text-white">
+                        LinkedIn <i class="fab fa-linkedin fa-lg me-2"></i>
+                    </a></p> 
+                    <p class="mb-0">Orientador: Prof. Evandro Soares - <a href="https://www.linkedin.com/in/evandro-soares-ribas-dev/" target="_blank" class="text-decoration-none text-white">
+                        LinkedIn <i class="fab fa-linkedin fa-lg me-2"></i>
+                    </a></p>
                 </div>
             </div>
         </div>

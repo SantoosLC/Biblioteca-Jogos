@@ -83,6 +83,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Escolha:</h6>
                 <a class="collapse-item" href="controle_usuarios.php">Controle de Usuarios</a>
+                <a class="collapse-item" href="layouts.php">Layouts</a>
             </div>
         </div>
     </li>
