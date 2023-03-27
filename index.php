@@ -71,7 +71,7 @@
                     <span class="navbar-text mx-2">.</span>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="dashboard/login.php">Painel do Professor</a>
+                    <a class="nav-link" href="Dashboard/login.php">Painel do Professor</a>
                     </li>
                 </ul>
                 </div>
