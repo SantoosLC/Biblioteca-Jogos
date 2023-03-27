@@ -17,8 +17,9 @@ require_once '../../../assets/conexao/conexao.php';
     $funcao = $_POST['funcao'];
     $foto = $_POST['foto'];
     $status = $_POST['status'];
+    $permissao = $_POST['adm'];
 
-    $atualizar_user = "UPDATE web_login SET nome='$nome', login='$login', email='$email', Funcao='$funcao', foto='$foto', status='$status'  WHERE id='$id'";
+    $atualizar_user = "UPDATE web_login SET nome='$nome', login='$login', email='$email', Funcao='$funcao', foto='$foto', status='$status', permissao='$permissao' WHERE id='$id'";
     $user = mysqli_query($conn, $atualizar_user);
 
     if(mysqli_affected_rows($conn)){

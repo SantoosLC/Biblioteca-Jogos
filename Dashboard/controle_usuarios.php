@@ -62,6 +62,7 @@ if ($adm == 'Administrador') {
                                             <th>Função</th>
                                             <th>Foto</th>
                                             <th>Status</th>
+                                            <th>Permissão</th>
                                             <th>Ações</th>
                                         </tr>
                                     </thead>
@@ -73,6 +74,7 @@ if ($adm == 'Administrador') {
                                             <th>Função</th>
                                             <th>Foto</th>
                                             <th>Status</th>
+                                            <th>Permissão</th>
                                             <th>Ações</th>
                                         </tr>
                                     </tfoot>
@@ -94,6 +96,7 @@ if ($adm == 'Administrador') {
                                         <td> <?php echo $funcao; ?> </td>
                                         <td> <?php echo $foto; ?> </td>
                                         <td> <?php echo $status; ?> </td>
+                                        <td> <?php echo $adm; ?> </td>
                                         <td> 
                                             <a type="button" style='width:50px;' class="btn btn-xs btn-success" data-toggle="modal" data-target="#ModalUsuario" 
                                             
@@ -104,6 +107,7 @@ if ($adm == 'Administrador') {
                                             data-funcao="<?php echo $funcao; ?>" 
                                             data-foto="<?php echo $foto; ?>" 
                                             data-status="<?php echo $status; ?>" 
+                                            data-adm="<?php echo $adm ?>"
 
                                             ><i class="bi bi-pencil-square" aria-hidden="true"></i></a>
 
@@ -263,12 +267,21 @@ if ($adm == 'Administrador') {
                         </div>
 
                         <div class="form-group">
+                            <label for="adm" class="control-label">Permissão no Painel</label>
+                            <select name="adm" id="adm" class="form-control adm">
+                                <option value="Administrador">Administrador</option>
+                                <option value="Padrao">Padrão</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label for="Funcao" class="control-label">Função</label>
                             <select name="funcao" id="funcao" class="form-control funcao">
                                 <option value="Desenvolvedor">Desenvolvedor</option>
                                 <option value="Professor">Professor</option>
                             </select>
                         </div>
+
 
                         <div class="form-group">
                             <label for="Foto" class="control-label">Foto:</label>
@@ -372,6 +385,7 @@ if ($adm == 'Administrador') {
 		  var funcao = button.data('funcao')
 		  var foto = button.data('foto')
 		  var status = button.data('status')
+          var adm = button.data('adm')
 
 		  var modal = $(this)
 
@@ -382,6 +396,7 @@ if ($adm == 'Administrador') {
 		  modal.find('.funcao').val(funcao)
 		  modal.find('.foto').val(foto)
 		  modal.find('.status').val(status)
+		  modal.find('.adm').val(adm)
 		  
 		})
 	</script>
