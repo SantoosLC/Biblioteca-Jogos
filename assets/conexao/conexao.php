@@ -1,10 +1,10 @@
 <?php
 // Conexão com o banco de dados
 
-$servidor = "localhost"; // Servidor
-$usuario = "root"; // Usuario DB
-$senha = ""; // Senha DB
-$db = "impressa_senaigames"; // Nome do Banco de Dados
+$servidor = "senaigames_new.vpshost3659.mysql.dbaas.com.br"; // Servidor
+$usuario = "senaigames_new"; // Usuario DB
+$senha = "Senai@Games1"; // Senha DB
+$db = "senaigames_new"; // Nome do Banco de Dados
 
 $conn = mysqli_connect($servidor, $usuario, $senha, $db);
 

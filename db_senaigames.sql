@@ -15,11 +15,11 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Copiando estrutura do banco de dados para impressa_senaigames
-CREATE DATABASE IF NOT EXISTS `impressa_senaigames` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-USE `impressa_senaigames`;
+-- Copiando estrutura do banco de dados para senaigames_new
+CREATE DATABASE IF NOT EXISTS `senaigames_new` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `senaigames_new`;
 
--- Copiando estrutura para tabela impressa_senaigames.games
+-- Copiando estrutura para tabela senaigames_new.games
 CREATE TABLE IF NOT EXISTS `games` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome_game` varchar(50) DEFAULT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `games` (
 
 -- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela impressa_senaigames.imagens
+-- Copiando estrutura para tabela senaigames_new.imagens
 CREATE TABLE IF NOT EXISTS `imagens` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `imagem` varchar(144) DEFAULT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `imagens` (
 
 -- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela impressa_senaigames.logs
+-- Copiando estrutura para tabela senaigames_new.logs
 CREATE TABLE IF NOT EXISTS `logs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `descricao` varchar(256) DEFAULT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
 
 -- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela impressa_senaigames.textos
+-- Copiando estrutura para tabela senaigames_new.textos
 CREATE TABLE IF NOT EXISTS `textos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(256) DEFAULT 'Titulo',
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `textos` (
 
 -- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela impressa_senaigames.turmas
+-- Copiando estrutura para tabela senaigames_new.turmas
 CREATE TABLE IF NOT EXISTS `turmas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `turma` varchar(50) NOT NULL DEFAULT '0',
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `turmas` (
 
 -- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela impressa_senaigames.web_login
+-- Copiando estrutura para tabela senaigames_new.web_login
 CREATE TABLE IF NOT EXISTS `web_login` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(30) NOT NULL,
